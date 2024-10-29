@@ -1,2 +1,32 @@
 Test-test
 Test и тестище!!
+
+import pandas as pd
+import openpyxl
+
+# Пример данных
+data = {
+    'Контрагент': ['Контрагент 1', 'Контрагент 2', 'Контрагент 3'],
+    'Оборудование': ['Компьютер', 'Принтер', 'Монитор'],
+    'Количество': [10, 5, 20],
+    'Стоимость': [1000, 500, 2000]
+}
+
+# Создание шаблона Excel
+wb = openpyxl.Workbook()
+ws = wb.active
+
+# Заполнение шаблона данными
+ws['A1'] = 'Контрагент'
+ws['B1'] = 'Оборудование'
+ws['C1'] = 'Количество'
+ws['D1'] = 'Стоимость'
+
+for i, row in enumerate(data.items()):
+    ws.cell(row=i + 2, column=1, value=row[0])
+    ws.cell(row=i + 2, column=2, value=row[1])
+    ws.cell(row=i + 2, column=3, value=row[2])
+    ws.cell(row=i + 2, column=4, value=row[3])
+
+# Сохранение файла
+wb.save('example.xlsx')
